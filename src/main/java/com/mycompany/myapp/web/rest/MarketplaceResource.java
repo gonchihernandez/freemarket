@@ -3,7 +3,6 @@ package com.mycompany.myapp.web.rest;
 import com.mycompany.myapp.repository.MarketplaceRepository;
 import com.mycompany.myapp.service.MarketplaceService;
 import com.mycompany.myapp.service.dto.MarketplaceDTO;
-import com.mycompany.myapp.service.dto.MarketplaceWithProductsDTO;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -142,17 +141,6 @@ public class MarketplaceResource {
     public List<MarketplaceDTO> getAllMarketplaces() {
         log.debug("REST request to get all Marketplaces");
         return marketplaceService.findAll();
-    }
-
-    /**
-     * {@code GET  /marketplaces} : get all the marketplaces.
-     *
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of marketplaces in body.
-     */
-    @GetMapping("/marketplaces/products")
-    public List<MarketplaceWithProductsDTO> getAllMarketplacesWithProducts() {
-        log.debug("REST request to get all Marketplaces");
-        return marketplaceService.findAllWithProducts();
     }
 
     /**

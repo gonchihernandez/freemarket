@@ -4,9 +4,7 @@ import com.mycompany.myapp.domain.Marketplace;
 import com.mycompany.myapp.repository.MarketplaceRepository;
 import com.mycompany.myapp.service.MarketplaceService;
 import com.mycompany.myapp.service.dto.MarketplaceDTO;
-import com.mycompany.myapp.service.dto.MarketplaceWithProductsDTO;
 import com.mycompany.myapp.service.mapper.MarketplaceMapper;
-import com.mycompany.myapp.service.mapper.MarketplaceWithProductsMapper;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -29,16 +27,9 @@ public class MarketplaceServiceImpl implements MarketplaceService {
 
     private final MarketplaceMapper marketplaceMapper;
 
-    private final MarketplaceWithProductsMapper marketplaceWithProductsMapper;
-
-    public MarketplaceServiceImpl(
-        MarketplaceRepository marketplaceRepository,
-        MarketplaceMapper marketplaceMapper,
-        MarketplaceWithProductsMapper marketplaceWithProductsMapper
-    ) {
+    public MarketplaceServiceImpl(MarketplaceRepository marketplaceRepository, MarketplaceMapper marketplaceMapper) {
         this.marketplaceRepository = marketplaceRepository;
         this.marketplaceMapper = marketplaceMapper;
-        this.marketplaceWithProductsMapper = marketplaceWithProductsMapper;
     }
 
     @Override
@@ -77,16 +68,6 @@ public class MarketplaceServiceImpl implements MarketplaceService {
     public List<MarketplaceDTO> findAll() {
         log.debug("Request to get all Marketplaces");
         return marketplaceRepository.findAll().stream().map(marketplaceMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
-    }
-
-    @Override
-    public List<MarketplaceWithProductsDTO> findAllWithProducts() {
-        log.debug("Request to get all Marketplaces with products");
-        return marketplaceRepository
-            .findAll()
-            .stream()
-            .map(marketplaceWithProductsMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     @Override

@@ -1,0 +1,23 @@
+{
+  "changelogDate": "20230327173906",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "credit",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Person",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}
