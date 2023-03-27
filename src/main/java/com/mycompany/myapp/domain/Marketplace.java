@@ -1,6 +1,9 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -23,6 +26,10 @@ public class Marketplace implements Serializable {
     @NotNull
     @Column(name = "name", nullable = false, unique = true)
     private String name;
+
+    @OneToMany(mappedBy = "marketplace")
+    @JsonIgnoreProperties(value = { "marketplace" }, allowSetters = true)
+    private Set<Product> products = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -50,6 +57,37 @@ public class Marketplace implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Product> getProducts() {
+        return this.products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        if (this.products != null) {
+            this.products.forEach(i -> i.setMarketplace(null));
+        }
+        if (products != null) {
+            products.forEach(i -> i.setMarketplace(this));
+        }
+        this.products = products;
+    }
+
+    public Marketplace products(Set<Product> products) {
+        this.setProducts(products);
+        return this;
+    }
+
+    public Marketplace addProducts(Product product) {
+        this.products.add(product);
+        product.setMarketplace(this);
+        return this;
+    }
+
+    public Marketplace removeProducts(Product product) {
+        this.products.remove(product);
+        product.setMarketplace(null);
+        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

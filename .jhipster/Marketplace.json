@@ -12,6 +12,13 @@
   "name": "Marketplace",
   "pagination": "no",
   "readOnly": false,
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityName": "product",
+      "otherEntityRelationshipName": "marketplace",
+      "relationshipName": "products",
+      "relationshipType": "one-to-many"
+    }
+  ],
   "service": "serviceImpl"
 }

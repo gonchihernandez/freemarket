@@ -1,5 +1,6 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -35,6 +36,7 @@ public class Product implements Serializable {
     private Integer amount;
 
     @ManyToOne
+    @JsonIgnoreProperties(value = { "products" }, allowSetters = true)
     private Marketplace marketplace;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

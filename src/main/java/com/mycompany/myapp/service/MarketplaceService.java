@@ -1,6 +1,7 @@
 package com.mycompany.myapp.service;
 
 import com.mycompany.myapp.service.dto.MarketplaceDTO;
+import com.mycompany.myapp.service.dto.MarketplaceWithProductsDTO;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,6 +39,13 @@ public interface MarketplaceService {
      * @return the list of entities.
      */
     List<MarketplaceDTO> findAll();
+
+    /**
+     * Get all the marketplaces with products.
+     *
+     * @return the list of entities.
+     */
+    List<MarketplaceWithProductsDTO> findAllWithProducts();
 
     /**
      * Get the "id" marketplace.
